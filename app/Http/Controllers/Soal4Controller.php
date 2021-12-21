@@ -42,6 +42,10 @@ class Soal4Controller extends Controller
         $tabelStok = $request->input('stok');
         $data = $request->all();
         if ($tabelBarang) {
+            $data['gambar_barang'] = $request->file('gambar_barang')->store(
+                'assets', //tempatnya
+                'public' //agar public
+            );
             Barang::create($data);
         }else if ($tabelStok) {
             Stok::create($data);

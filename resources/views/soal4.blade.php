@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Tabel Barang</h2>
-                <form action="{{ route('soal-4.store') }}" method="POST">
+                <form action="{{ route('soal-4.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Masukkan Kode Barang</label>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Masukkan Gambar Barang</label>
-                        <input type="text" class="form-control" name="gambar_barang" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="file" class="form-control" name="gambar_barang" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <button type="submit" name="barang" value="true" class="btn btn-primary">Submit</button>
                 </form>
@@ -48,7 +48,9 @@
                                 <th scope="row">{{ $key+1 }}</th>
                                 <td>{{ $item->kode_barang }}</td>
                                 <td>{{ $item->nama_barang }}</td>
-                                <td>{{ $item->gambar }}</td>
+                                <td>
+                                    <img src="/storage/{{ $item->gambar_barang }}" width="50" alt="">
+                                </td>
                                 <td>
                                     <form action="{{ route('soal-4.destroy', $item->id) }}" method="post">
                                         @csrf
